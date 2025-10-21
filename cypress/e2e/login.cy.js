@@ -9,10 +9,11 @@ describe('Usuario', () => {
     cy.fixture('userData').as('user')
 
     cy.get('#username').type(userData.usuario)
-    cy.get('#senha').type(userData.senha)
+    cy.get('#senha').type(userData.senha, {log:false})
 
+    cy.intercept('POST', '/bff/login').as('postLogin')
     cy.get('[onclick*=login]').click()
-
+    cy.wait('@postLogin')
     cy.contains('h4', 'Realizar Transferência').should('not.be.hidden')
   })
 })
