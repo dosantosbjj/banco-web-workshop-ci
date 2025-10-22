@@ -7,10 +7,7 @@ jobs:
   tests:
     #seleção o SO
     runs-on: ubuntu-latest
-    #seleção do container(opcional)
-    container:
-      image: cypress/browsers:22.15.0
-      options: --user 1001
+    
     #variáveis de ambiente
     env:
       API_BASE_URL: 'http://localhost:3000'
