@@ -1,0 +1,39 @@
+name: Testes automatizados Web
+
+on:
+  workflow_dispatch:
+
+jobs:
+  tests:
+    #seleção o SO
+    runs-on: ubuntu-latest
+    #seleção do container(opcional)
+    container:
+      image: cypress/browsers:22.15.0
+      options: --user 1001
+    #variáveis de ambiente
+    env:
+      API_BASE_URL: 'http://localhost:3000'
+      PORT: 4000
+    #passos ou ações que serão executadas
+    steps:
+      - name: Checkout no repositório
+        uses: actions/checkout@v4
+
+      - name: Instalando as dependências
+        run: npm install
+
+      - name: Executando servidor de aplicação
+        run: npm run server &
+
+      - name: Executando servidor de mocks
+        run: npm run mock-server &
+
+      - name: Executa os testes em Cypress
+        uses: cypress-io/github-action@v6.5.0
+        
+
+      
+    
+    
+    
