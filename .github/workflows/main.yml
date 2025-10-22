@@ -30,7 +30,7 @@ jobs:
         run: npm run mock-server &
 
       - name: Executa os testes em Cypress
-        uses: cypress-io/github-action@v6.5.0
+        run: npx cypress run
         
 
       
